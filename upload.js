@@ -130,7 +130,8 @@ async function main() {
 
   // 视频描述
   await page.click("div.ql-editor[data-placeholder^=填写更全]")
-  await page.keyboard.type(`u2bili自动上传\n${meta["description"]}`)
+  await page.keyboard.type(`You can learn anything.`)
+  // await page.keyboard.type(`u2bili自动上传\n${meta["description"]}`)
 
   await page.fill("input[placeholder*=标题]", meta["title"])
 
@@ -147,12 +148,12 @@ async function main() {
   } catch (error) {
     console.error('上传封面失败，使用自动生成的封面', error.message)
     await page
-    .waitForSelector('text="更改封面"', {
-      timeout: 3 * 60_000, // 等待自动生成封面
-    })
-    .catch(() => {
-      console.log("等待封面自动生成时间过长")
-    })
+      .waitForSelector('text="更改封面"', {
+        timeout: 3 * 60_000, // 等待自动生成封面
+      })
+      .catch(() => {
+        console.log("等待封面自动生成时间过长")
+      })
   }
 
   await page
@@ -237,7 +238,7 @@ async function uploadSubtitles(page, meta) {
   // 即使格式错误也继续上传
   await page
     .click('text="取消"', { timeout: 1000, delay: 1000 })
-    .catch(() => {})
+    .catch(() => { })
 }
 
 main()
